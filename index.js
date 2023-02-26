@@ -61,6 +61,23 @@ router.hooks({
             console.log(store.Home.weather);
 
             done();
+          })
+          .catch(err => console.log(err));
+        break;
+      // New Case for Pizza View
+      case "Pizza":
+        // New Axios get request utilizing already made environment variable
+        axios
+          .get(`${process.env.PIZZA_PLACE_API_URL}/pizzas`)
+          .then(response => {
+            // Storing retrieved data in state
+            console.log(response.data);
+            store.Pizza.pizzas = response.data;
+            done();
+          })
+          .catch(error => {
+            console.log("It puked", error);
+            done();
           });
         break;
       default:
