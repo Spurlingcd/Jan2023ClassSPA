@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import html from "html-literal";
 
-export default () => html`
+export default st => html`
   <section id="pizza">
     <table id="pizzas">
       <tr>
