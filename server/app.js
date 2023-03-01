@@ -1,12 +1,13 @@
 // 'Import' the Express module instead of http
 const express = require("express");
-// Initialize the Express application
-const app = express();
 const dotenv = require("dotenv");
 
 dotenv.config();
 
 const PORT = process.env.PORT || 4040; // we use || to provide a default value
+
+// Initialize the Express application
+const app = express();
 
 const logging = (request, response, next) => {
   console.log(`${request.method} ${request.url} ${Date.now()}`);
@@ -48,7 +49,6 @@ app.post("/add", (request, response) => {
   };
   response.json(responseBody);
 });
-
 // Tell the Express app to start listening
 // Let the humans know I am running and listening on 4040
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
