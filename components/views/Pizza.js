@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
 import html from "html-literal";
-
-export default () => html`
-  <section id="pizza">
+export default st => {
+  console.log(st);
+  return html`
     <table id="pizzas">
       <tr>
         <th>Crust</th>
@@ -21,5 +20,5 @@ export default () => html`
         })
         .join("")}
     </table>
-  </section>
-`;
+  `;
+};
