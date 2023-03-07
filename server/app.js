@@ -1,10 +1,21 @@
 // 'Import' the Express module instead of http
 const express = require("express");
 const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const pizzas = require("./routers/pizzas");
 
 dotenv.config();
 
 const PORT = process.env.PORT || 4040; // we use || to provide a default value
+
+mongoose.connect(process.env.MONGODB); //PULLS IN DRIVER TWO PIECES OF SOFTWARE TALKING
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "Connection Error:"));
+db.once(
+  "open",
+  console.log.bind(console, "Successfully opened connection to Mongo!")
+);
 
 // Initialize the Express application
 const app = express();
@@ -49,6 +60,8 @@ app.post("/add", (request, response) => {
   };
   response.json(responseBody);
 });
+
+app.use("/pizzas", pizzas);
 // Tell the Express app to start listening
 // Let the humans know I am running and listening on 4040
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
